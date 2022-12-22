@@ -1,0 +1,319 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800&display=swap');
+
+:root {
+    --lumo-base-color: hsl(199, 18%, 10%);
+    --lumo-primary-text-color: rgb(175, 199, 223);
+    --lumo-secondary-color: #323B44;
+    --blue-color: #039ED2;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 300ms;
+}
+
+.container {
+    background-color: var(--lumo-base-color);
+    color: var(--lumo-primary-text-color);
+    width: 100vw;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 300px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: var(--lumo-base-color);
+    border-right: .1rem solid var(--lumo-primary-text-color);
+    z-index: 100;
+    transition: all 300ms;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.sidebar h3 {
+    text-decoration: underline;
+}
+
+.sidebar p {
+    text-align: left;
+}
+
+.sidebar h3, .sidebar p, .sidebar ul {
+    margin-left: 25px;
+}
+
+.sidebar ul li {
+    text-align: left;
+    margin-left: 30px;
+}
+
+#nav-toggle {
+    display: none;
+}
+
+#nav-toggle:checked + .sidebar {
+    left: -300px;
+    border: none;
+}
+
+#nav-toggle:checked ~ .main-content {
+    margin-left: 0px;
+}
+
+#nav-toggle:checked ~ .main-content .chatFooter {
+    left: 0;
+}
+
+.main-content {
+    transition: all 300ms;
+    margin-left: 300px;
+}
+
+.header {
+    height: 4rem;
+    box-shadow: 0 .3rem .5rem rgba(0, 0, 0, .2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.header .logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.header h3 {
+    color: var(--lumo-primary-text-color);
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-left: 1rem;
+}
+
+.header .icon {
+    font-size: 2rem;
+}
+
+#mod-toggle{
+    display: none;
+}
+
+#mod-toggle:checked + .container {
+    background-color: white;
+}
+
+#mod-toggle:checked + .container .sidebar {
+    background-color: white;
+    color: var(--lumo-base-color);
+}
+
+#mod-toggle:checked + .container .sidebar h3 {
+    color: var(--blue-color);
+}
+
+#mod-toggle:checked + .container .main-content .header {
+    background-color: white;
+    color: var(--blue-color);
+    box-shadow: 0 .1rem .3rem rgba(0, 0, 0, .08);
+}
+
+#mod-toggle:checked + .container .main-content .header h3 {
+    color: var(--blue-color);
+}
+
+#mod-toggle:checked + .container .main-content .chatFooter input {
+    background-color: unset;
+    border: .1rem solid rgba(0, 0, 0, .4);
+    color: var(--lumo-base-color);
+}
+
+#mod-toggle:checked + .container .main-content .chatFooter button {
+    background-color: var(--blue-color);
+    color: white;
+    width: 3.5rem;
+    height: 3rem;
+}
+
+#mod-toggle:checked + .container .main-content .chatBody .userMsg {
+    background-color: var(--blue-color);
+    color: white;
+}
+
+#mod-toggle:checked + .container .main-content .chatBody .botMsg {
+    background-color: rgba(0, 0, 0, .08);
+    color: var(--lumo-base-color);
+}
+
+#mod-toggle:checked + .container .main-content .chatBody .userIcon,
+#mod-toggle:checked + .container .main-content .chatBody .botIcon {
+    background-color: rgba(0, 0, 0, .08);
+}
+
+#mod-toggle:checked + .container .main-content .status h5{
+    color: var(--lumo-base-color);
+}
+
+
+
+.chatBody {
+    margin: 1rem;
+    margin-top: 0;
+    height: calc(100vh - 11.5rem);
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    padding: 0 2rem;
+}
+
+.chatBody .status {
+    align-self: flex-end;
+}
+
+.status h5 {
+    letter-spacing: .2rem;
+    font-weight: 600;
+    color: var(--lumo-primary-text-color);
+}
+
+.chatBody::-webkit-scrollbar {
+    display: none;
+}
+
+.chatBody .botMsg , .chatBody .userMsg {
+    border-radius: .5rem;
+    border: none;
+    font-size: 1.2rem;
+    color: var(--lumo-primary-text-color);
+    max-width: 40rem;
+    min-width: 10rem;
+    margin: 1rem 0;
+    padding: .5rem 1rem;
+    min-height: 2.5rem;
+}
+
+@media screen and (max-width: 900px) {
+    
+    .chatBody .botMsg , .chatBody .userMsg {
+        max-width: 20rem;
+        font-size: 1rem;
+        min-height: 2rem;
+        margin: .5rem 0;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    
+    .chatBody .botMsg , .chatBody .userMsg {
+        max-width: 10rem;
+        font-size: .8rem;
+        min-height: 1.5rem;
+        margin: .3rem 0;
+    }
+
+    .header {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.chatBody .botMsg {
+    background-color: rgba(0, 0, 0, .6);
+}
+
+.chatBody .userMsg {
+    background-color: var(--lumo-secondary-color);
+}
+
+.chatBody .left {
+    text-align: left;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.chatBody .right {
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.botIcon, .userIcon {
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: var(--lumo-primary-text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 50%;
+    color: var(--lumo-base-color);
+    font-size: 2rem;
+}
+
+.botIcon {
+    margin-right: .7rem;
+}
+
+.userIcon {
+    margin-left: .7rem;
+}
+
+
+.chatFooter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+    position: fixed;
+    bottom: .5rem;
+    right: 0;
+    left: 300px;
+    transition: all 300ms;
+}
+
+.chatFooter form {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.chatFooter input {
+    width: 100%;
+    height: 2.5rem;
+    border: none;
+    outline: none;
+    border-radius: .6rem;
+    background-color: var(--lumo-secondary-color);
+    padding: .2rem 1rem;
+    color: var(--lumo-primary-text-color);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.chatFooter button {
+    width: 3rem;
+    height: 2.5rem;
+    border: none;
+    outline: none;
+    border-radius: .6rem;
+    background-color: var(--lumo-secondary-color);
+    color: var(--lumo-primary-text-color);
+    font-size: 1.5rem;
+}
+
+
